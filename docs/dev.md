@@ -112,7 +112,7 @@ GraphQL
 
 ## Step2： Djangoブログマネージャを作成する
 
-- Django 블로그 애플리케이션 만들기
+- Django ブログアプリケーションの作成
 
   ```sh
   ❯ pwd
@@ -143,13 +143,27 @@ GraphQL
 
   </details>
 
-- Django 블로그 애플리케이션 활성화
+- Django ブログアプリケーションの有効化
   - プロジェクトで新しいblogアプリケーションを知ることができるようにするには、インストールされているアプリケーションのリストに追加する必要があります。
   - INSTALLED_APPSで変数を更新します。
+  - back_end/backend/settings.py
 
-  ```diff
+    ```diff
+    INSTALLED_APPS = [
+        "django.contrib.admin",
+        "django.contrib.auth",
+        "django.contrib.contenttypes",
+        "django.contrib.sessions",
+        "django.contrib.messages",
+        "django.contrib.staticfiles",
+    +   "blog.apps.BlogConfig",
+    ]
+    ```
 
-
+- Djangoブログデータモデルの作成
+  1. Profileブログユーザーに関する追加情報を保存します。
+  2. Tagブログ投稿をグループ化できるカテゴリを表します。
+  3. Post各ブログ投稿のコンテンツとメタデータを保存します。
 
 ## Step3： Graphene-Djangoの設定
 

@@ -39,9 +39,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "blog.apps.BlogConfig",
+    "graphene_django",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -123,3 +127,14 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# GraphQL 스키마를 특정 위치에서 찾도록 구성
+GRAPHENE = {
+    "SCHEMA": "blog.schema.schema",
+}
+# 인터넷의 어느 곳에서나 사용할 수 있도록 애플리케이션을 노출하고 싶지 않을 것입니다.
+# GraphQL API를 얼마나 열 것인지 정의하려면 다음 세 가지 설정 중 하나를 사용해야 합니다.
+# CORS_ALLOWED_ORIGINS: Django 애플리케이션이 요청을 허용하는 도메인 목록입니다.
+# CORS_ALLOWED_ORIGIN_REGEXES: 요청을 허용할 도메인과 일치하는 정규 표현식 목록입니다 .
+# CORS_ALLOW_ALL_ORIGINS: 기본적으로 Django를 모두 열어둘지, 모두 닫아둘지를 정의하는 부울 값입니다.
+CORS_ALLOWED_ORIGINS = ("http://localhost:5173",)
